@@ -1,0 +1,30 @@
+Caching with localStorage
+
+const storage = (name, data) => localStorage.setItem(name, JSON.stringify(data))
+
+.htaccess
+
+RewriteEngine On
+# General 
+#RewriteRule ^([\w]+)$ index.php?page=$1
+#RewriteRule ^([\w]+)/$ index.php?page=$1
+
+#RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)$ index.php?page=$1&id=$2
+#RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/$ index.php?page=$1&id=$2
+
+#RewriteRule ^([a-z]+)/([0-9]+)$ index.php?page=$1&token=$2
+
+# For activation # 
+#RewriteRule ^([a-zA-Z0-9]+)/([a-z0-9]+)$ index.php?page=$1&token=$2
+
+
+#RewriteRule ^([a-zA-Z0-9]+)/([\w\d]+)$ index.php?page=$1
+
+#RewriteRule ^([\w]+)/([a-zA-Z0-9]+)$ index.php?page=$1&first=$2 [NC,L]
+#RewriteRule ^([\w]+)/([a-zA-Z0-9]+)/$ index.php?page=$1&first=$2 [NC,L]
+
+
+#RewriteRule ^([\w]+)/([a-zA-Z0-9]+)/([a-zA-Z0-9]+)$ index.php?page=$1&first=$2&second=$3 [NC,L]
+
+
+#RewriteRule ^([a-z]+)/([0-9a-zA-z_-]+)/$ index.php?page=$1&token=$2 [NC,L]

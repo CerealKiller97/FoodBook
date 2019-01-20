@@ -1,0 +1,36 @@
+1. Napraviti bazu dizajn skroz
+2. API odraditi /users rutu do kraja FULL Validacija MAILER itd..
+3. Klijent VALIDACIJA
+
+
+# Foodbook
+
+### API
+Every route MUST include CSRF Token!! [ apiKey ]
+
+Example:
+
+```javascript
+axios.get(`/users/read.php?apiKey=${token}`)
+  .then(res => console.log(res.data)) // getting results
+  .catch(err => console.log(err)) // catching error
+```
+
+### Plugins
+
+Dillinger is currently extended with the following plugins. Instructions on how to use them in your own application are linked below.
+
+### Users
+
+| Method | Route | Explaination| Status Codes|
+| ------ | ------ |------| ------|
+| GET | /users/read.php | Get all users| 202|
+| GET/:id | /users/read_single.php?id=:id | Get specific user by id | 202|
+| POST | /users/create.php | Register user | 201|
+| POST | /users/login.php | Login user with credentials | 202|
+| PATCH/:id | /users/update.php?id=:id | Update specific user| 204|
+<<<<<<< HEAD
+| DELETE/:id | /users/delete.php?id=:id  | Delete specific user| 204|
+=======
+| DELETE/:id | /users/delete.php?id=:id  | Delete specific user| 204|
+>>>>>>> 06068f35166258bbb62a969083d80ef296c7c213
