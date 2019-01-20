@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   if (Token::check($token)) {  
     if (Token::validate($token)) {
       $users = User::all();
-      if (count($users)) {
+      if (is_array($users)) {
         $data = $users;
         $code = 202;
       } else {

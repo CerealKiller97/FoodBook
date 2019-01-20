@@ -7,16 +7,21 @@ jQuery('#shards-custom-slider').customSlider({
     max: 100
   }
 })
+let editor
 
-tinymce.init({ selector: '#description' })
+
 
 const addRecipe = () => {
   const approximatedTime = document.querySelector('#approximatedTime')
   const data = approximatedTime.value
 
-  let ready = true
-  if (ready) {
-    console.log('ajax')
+  const editorData = editor.getData()
+  console.log(editorData)
+  if (editorData !== '<p>&nbsp;</p>') {
+    console.log(`data ${editorData}`)
+  } else {
+    console.log(`no data`)
+
   }
 }
 
@@ -34,13 +39,21 @@ const titleChange = e => {
 }
 
 const initApp = () => {
+
+  ClassicEditor
+    .create(document.querySelector('#editor'))
+    .then(newEditor => {
+      editor = newEditor
+    })
+    .catch(error => {
+      console.error(error)
+    })
+
   const btn = document.querySelector('#btn')
-  const description = document.querySelector('#description')
   const title = document.querySelector('#title')
 
   btn.addEventListener('click', addRecipe)
   title.addEventListener('input', titleChange)
-  description.addEventListener('input', descriptionChange)
 }
 
 document.addEventListener('DOMContentLoaded', initApp())

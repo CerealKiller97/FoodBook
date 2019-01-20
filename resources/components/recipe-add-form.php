@@ -18,7 +18,7 @@
   <div class="form-group row"> 
     <label for="description" class="col-4 col-form-label">Description</label> 
     <div class="col-8">
-      <textarea  id="description" placeholder="Description" class="form-control"></textarea>
+    <textarea name="content" id="editor"></textarea>
     </div>
   </div>
 

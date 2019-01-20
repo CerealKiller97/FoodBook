@@ -37,7 +37,7 @@ const Recipe = ({
   <div class="card-body">
     <h6 class="card-title">${title}</h6>
     <p class="card-text">${ingridientsList}</p>
-    <h6 class="card-title">Preparing: ${approximatedTime.toHHMMSS()} min</h6>
+    <h6 class="card-title">Preparation: ${approximatedTime.toHHMMSS()} min</h6>
     <a href="?page=recipe&id=${recipeID}" class="btn btn-success">Read more &rarr;</a>
   </div>
 </div>`

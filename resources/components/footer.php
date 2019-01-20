@@ -85,7 +85,7 @@
         break; 
 
       case 'add-recipe':
-      echo "<script src='http://cloud.tinymce.com/5-testing/tinymce.min.js'></script>";
+      echo "<script src='https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js'></script>";
       echo "<script async src='js/add-recipe.js'></script>";
         break;
 
