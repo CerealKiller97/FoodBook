@@ -1,13 +1,13 @@
--- MySQL dump 10.16  Distrib 10.1.37-MariaDB, for Linux (x86_64)
+-- MySQL dump 10.17  Distrib 10.3.12-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: foodbook
 -- ------------------------------------------------------
--- Server version	10.1.37-MariaDB
+-- Server version	10.3.12-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -27,8 +27,8 @@ CREATE TABLE `comment` (
   `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `userID` int(11) NOT NULL,
   `recipeID` int(11) NOT NULL,
-  `deleted` int(11) NOT NULL DEFAULT '0',
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` int(11) NOT NULL DEFAULT 0,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -53,7 +53,7 @@ CREATE TABLE `like` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userID` int(11) NOT NULL,
   `recipeID` int(11) NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -77,8 +77,8 @@ DROP TABLE IF EXISTS `navigation`;
 CREATE TABLE `navigation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `link` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `deleted` tinyint(1) NOT NULL DEFAULT '0',
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -105,7 +105,7 @@ CREATE TABLE `poll` (
   `userID` int(11) NOT NULL,
   `questionID` int(11) NOT NULL,
   `suggestionID` int(11) NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -130,8 +130,8 @@ CREATE TABLE `question` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `question` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `page` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `deleted` tinyint(1) DEFAULT '0',
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` tinyint(1) DEFAULT 0,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -162,10 +162,10 @@ CREATE TABLE `recipe` (
   `approximatedTime` int(11) NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `userID` int(11) NOT NULL,
-  `deleted` tinyint(1) DEFAULT '0',
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` tinyint(1) DEFAULT 0,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='spaggeti-carbonara';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='spaggeti-carbonara';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,6 +174,7 @@ CREATE TABLE `recipe` (
 
 LOCK TABLES `recipe` WRITE;
 /*!40000 ALTER TABLE `recipe` DISABLE KEYS */;
+INSERT INTO `recipe` VALUES (1,'Kavurma','some description','salo,slanina,nogice','kavurma',15,'images/kavurma.jpeg',3,0,'2019-01-19 11:43:57'),(2,'Cvarci sa majonezom','cvarci majonez','cvarci,majonez','cvarci-sa-majonezom',1,'images/cvarci.jpeg',3,0,'2019-01-19 11:49:26'),(3,'Pomfrit','Pomfrit descir','krompir,kecap','pomfrit',10,'images/pomfrit.jpeg',4,0,'2019-01-19 13:42:54'),(4,'Princes krofne','Ставити у шерпу воду и уље да провре. Склонити са ватре па додати брашно помешано са прашком за пециво. Вратити на ватру и уз брзо мешање скувати компактно тесто. У прохлађено тесто додавати једно по једно јаје, стално мешајући. Шприцем или кашичицом формирати крофнице на плеху. Пећи у рерни 15 минута на 200 степени.\n\nЗа крем умутити жуманца са шећером и брашном, размутити са мало хладног млека. Остатак млека ставити да проври, па сипати крем од жуманаца и кувати да се згусне. Готов крем скинути са ватре и у охлађено додати путер и ванилин шећер. Мутити док крем не постане гладак. Охлађене крофне расећи, филовати кремом и посути шећером у праху. Преко основног крема може се додати и улупана слатка павлака или шлаг.','mleko krofne brasno ulje','princes-krofne',75,'images/princes.jpg',4,0,'2019-01-19 14:27:39'),(5,'Recept 1 ','Recipe One','ingrid1,ingrid2,ingrid3','recipe-one',54,'images/sidebar-2.jpg',4,0,'2019-01-20 22:19:15'),(6,'Spagete','Da?!?','milanko,marinko','spagete',50,'images/7ovspi0.png',4,0,'2019-01-23 20:36:34'),(7,'Kupus','kupus','kupus','kupus',15,'images/tIW2qR3.png',3,0,'2019-01-23 20:36:59'),(8,'some title','some description','kupus,luk','recipe-slug',1,'images/1548291872recipe.png',3,0,'2019-01-24 01:04:32'),(9,'some title','some description 2','krompir,praziluk','recipe-slug',15,'images/1548292550recipe.png',3,0,'2019-01-24 01:15:50'),(10,'some title','some description 2','krompir,praziluk','recipe-slug',15,'images/1548292629recipe.png',3,0,'2019-01-24 01:17:09'),(11,'some title','some description 2','krompir,praziluk','recipe-slug',15,'images/1548292659recipe.png',3,0,'2019-01-24 01:17:39'),(12,'some title','some description 2','krompir,praziluk','recipe-slug',15,'images/1548292671recipe.png',3,0,'2019-01-24 01:17:51'),(13,'some title','some description 2','krompir,praziluk','recipe-slug',15,'images/1548292694recipe.png',3,0,'2019-01-24 01:18:14'),(14,'some title','some description 2','krompir,praziluk','recipe-slug',15,'images/1548292992recipe.png',3,0,'2019-01-24 01:23:12'),(15,'some title','some description 2','krompir,praziluk','recipe-slug',15,'images/1548293111recipe.png',3,0,'2019-01-24 01:25:11'),(16,'some title','some description 2','krompir,praziluk','recipe-slug',15,'images/1548293206recipe.png',3,0,'2019-01-24 01:26:46');
 /*!40000 ALTER TABLE `recipe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,8 +188,8 @@ DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `deleted` tinyint(1) NOT NULL DEFAULT '0',
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -215,10 +216,10 @@ CREATE TABLE `socialnetwork` (
   `icon` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `url` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tooltip` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `deleted` tinyint(1) DEFAULT '0',
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` tinyint(1) DEFAULT 0,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -227,6 +228,7 @@ CREATE TABLE `socialnetwork` (
 
 LOCK TABLES `socialnetwork` WRITE;
 /*!40000 ALTER TABLE `socialnetwork` DISABLE KEYS */;
+INSERT INTO `socialnetwork` VALUES (1,'facebook','http://facebook.com/','Follow us on',0,'2019-01-14 18:45:10'),(2,'twitter','http://twitter.com/','Follow us on',0,'2019-01-14 18:45:39'),(3,'youtube','http://youtube.com/','Follow us on',0,'2019-01-14 18:46:03'),(4,'googleplus','https://plus.google.com/','Follow us on',0,'2019-01-14 18:46:38');
 /*!40000 ALTER TABLE `socialnetwork` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -241,8 +243,8 @@ CREATE TABLE `suggestion` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `suggestion` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `questionID` int(11) NOT NULL,
-  `deleted` tinyint(1) DEFAULT '0',
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` tinyint(1) DEFAULT 0,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -272,13 +274,13 @@ CREATE TABLE `user` (
   `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '0',
+  `active` tinyint(1) NOT NULL DEFAULT 0,
   `roleID` tinyint(1) NOT NULL,
-  `deleted` tinyint(1) DEFAULT '0',
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` tinyint(1) DEFAULT 0,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_email_uindex` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -287,7 +289,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Stefan','Bogdanovic','CerealKIller','bogdanovicstefan1997@gmail.com','$2y$10$uXNH4wELUnH5q1aFqdDLwe4A2hLSBGMy/zn/5L1OOKfdme053sMHe','7ad37ca558ea45c22c2c39cc74c26d7dd559c6eb38ea5c32ced6b9dd21ca64d118a182acc63af29637d9441faea4376d8af509e62df85f5fe5305e04',0,2,0,'2019-01-11 23:59:56'),(2,'Geni','Iguana','iguanica','geni@gmail.com','$2y$10$vpznUlonfSD1VY18m57FpuEwjHgDVM4CrP5blBDSFBtNEdlzdGs4C','bdbc6a75e979c1bf1ea223e9189f89cb49d9cb4ac431a99aa6559ecefad27e7c6213c7485716cb59842448e996247239e44dd2a564b444c2b13d0101',0,2,0,'2019-01-13 20:41:26');
+INSERT INTO `user` VALUES (3,'Stefan','Bogdanovic','CerealKiller','bogdanovicstefan1997@gmail.com','$2y$10$nevfZNrID3x8yitCi7IqvuGoh19CCvMR7Ib6x1Q2i8EQGMNmIZw4K','e4bc317327ab54a3fb39071fc0624b68eec548b454564395bdf1f336ce67b652cd71db6107d66710b5d0bacadf243c0b915355c85e36171eb5e7ac0f',1,1,0,'2019-01-14 19:35:01'),(4,'Dwagoswaw','Daniwowic','daca1234','daca@gmail.com','$2y$10$vFxfBIWO3iwbAeAHu64x5.Oy8EmKT5aN1p8vB1CpCP2yiU4SjXKla','dc88f70a696561981776026924344380ae002d85529847a43c4025403da3da4acd22229d5b30563a83fa1f7a1bbd9f14b1ebcf6da8f81ab782350b9e',1,2,0,'2019-01-19 08:53:34'),(6,'Aleksandar','Genic','iguana','geni@gmail.com','$2y$10$7ETeY.Mf35M/TcX0jSxjTemxuEMIciJUVw3vGG3cdbQhsohmwAexq','47b13e87f286cdf2bbd2a2db247fb814792d87ee7fb47d036173102618bf7b9e6a72b2267b237d38b7daf40943332acf7de84ab47ff030096b1b4e5a',1,2,1,'2019-01-19 08:59:14'),(10,'Aleksandar','Genic','iguana','geni1@gmail.com','$2y$10$miH7kffMavux3hF6O1rRi.tGvCsDwJUS4ITszvLXQtiYBNsPeij4u','788d5a139e1034b1fee1ae9d6bbed818308d8bea0b7b386d4945c2b857d6000cff33be9cbceecaf5048fcf08187337f34765b9c2d585ad146a70e891',1,2,0,'2019-01-19 08:59:53'),(11,'Zoran','Bogdanovic','zoki1234','bzka53@gmail.com','$2y$10$kCMhtIpnEijNqkx7/Me4YuhpugGCaeySn/qq5JBHiaUODuGw3ON/i','ebb848791d623c33476275b4c484a2a4bf46d9ce4767530df78b5cc15d23b937eb228d93e7472e3fd8f7de39953a24acb7a80df2d379588f9b173515',1,2,0,'2019-01-19 09:02:33'),(12,'Bratina','Teofilovic','masterteo','teo@gmail.com','$2y$10$DuUtKME97grCPhmxbJ1eg.K4y.RV7iMovRTKKKSe87Q.ufGWoaF.C','8a8426e5277addbb6eea6d6269f23ded515a7de94bf13daedc5017cfadb8181c91534a5e3d52e697ad5fee6e0553aa9192a74d2231d0c2e65492d7f3',1,2,0,'2019-01-19 09:36:54'),(14,'Stefan','Stefanovic','Steff','stefan@gmail.com','$2y$10$90MV3GeADV68wPlmVzxqT.g.IAn4rt0tNSrshJI4/Ype5Sk8k17QG','41361dbac636279eea996ac77b2f49cdc1bc8c86537d8214e87ca2f428d0fc3a09b1f527d3c4b76a54180663ff20b29e8fc1210e2b6c2c8b2572d0cd',1,2,0,'2019-01-19 10:03:37'),(16,'Antonije','Pawlowic','kowega','bogdanovicstefan19927@gmail.com','$2y$10$xk0CQS7fx9nmTEFETjOmQu/zuc8qt5CKz0tbA0Lr6UBwrPyq6PmVC','e7b9b9a3f8c718947801df8631329529e49abe5e67bea588779ece4cf485cf3d50763fb214d8bdfbb8c13641fb2ea0d2216589d5e3d398e1d96e0f2e',0,2,0,'2019-01-20 15:47:07'),(17,'Tony','Pawlowic','kowega','bogdanovicstefan11239927@gmail.com','$2y$10$W70Xyn.HQunkcMW1QLzFnOrW7q7BopQ9uiupXu0zpLY.dv2dVypyC','95652f49925ced80abe72fd68a17a0649c921a05ce92a5893eb7b4476b0ca9ed6afb5868e132bfcf95bee4b780ce0394cc48a7de37dff5c9322c80a7',0,2,0,'2019-01-20 15:49:01'),(18,'Kowega','Wawawew','wawawew','laravel@gmail.com','$2y$10$9FIbYFoqeyWN8WWYAclig.Fs/1jwZFCXbPmCLYjZuQ8N9V0dq97wK','4b6148e0e49c37c3a0b738b1bfb4b5942d8710ca6317433cb1d28138c3027480c2150a5e5b215dd1f8a27246dc98a6221f3adb92bf5e1a1a0ab3e5ea',0,2,0,'2019-01-20 15:49:44'),(19,'Kowega','Kornelije','kornelije','kornelije@gmail.com','$2y$10$ZXM7Rukvi6zpSJv/GDXb2.Jw2oPELaZAZenLWmjVkoHj0kDASUs56','06cbbb8f32131a6c2a253d1eb49c856fbda9282d0a5feff96d95049132e538647818ebcd451aa75d783108392ef996a833698af32ac8082398ee71a7',0,2,0,'2019-01-20 15:59:58'),(20,'Zorica','Malowic','vinjak','vinjak@zorica.me','$2y$10$lODJ4fo1cgtWfisAe1.UluWmQRkzZn.4R3bg1zZCdH3TYntV/sHHK','643c17729acaadd329df9db80254f882f049345a90daff461f1a8eae5a57a44af153cf8f677c1d3fb0273cb309bdcf5ef545c3e570d5c4d644e886d6',0,2,1,'2019-01-20 16:02:05'),(21,'Miroslav','Marinkovic','mosar','noulajf@gmail.com','$2y$10$bcMw2c829canBEPKuAQah.AqOeiI.vdE5fRfAnhQ4clX56aFjT/qu','02dff9ec04d8c6f0a69153153b7d6bc7a5559573b6647eef9f94523fb75dcf6839306c6b6f7dbf2a4bd577c41129963d2246885d3acea68a07620a62',0,2,0,'2019-01-20 16:14:03'),(22,'Miroslav','Marinkovic','Mosar','noulajfr@gmail.com','$2y$10$af.iUbuKWjZAUZ6RirJva.s60dpQVZtC2cE41m/AP0uuxF41XWkuu','67d6aa9596a765e0a1faf5f6d93c3a7a08f66af0b738e02db331f3a91182759235d633d629ab08da7c67b632e616e7b2b24e1f934410cd14a8f3eb70',0,2,0,'2019-01-20 16:15:25'),(24,'Mosar','Mosar','gosnmosar','mosar@gmail.com','$2y$10$ATrEQrCPU6ZQQBIrsAwbL.T6afThDJRSDD9h7zEpq.XsTT.vRAcvO','24da4ee532cff26eca832fb9e576735cc3374d7fe2695e678586fcb83326eb5abdd04e996b41dcd4f669644c8f6217869702ade4a55536c557a9824b',0,2,1,'2019-01-20 16:17:27'),(25,'Macak','Cizme','cizme','cizme@gmail.com','$2y$10$ngG0LR52qCqwTWqjLC7GDO/cf/uaoLtPjkNC4f4EtGt1B.V4ej.j6','00ffdeeef70b560832db245169a17ecaefc68733f2b026fc2b961db9f36a69aed7e4525d011ddbd7b4597210e4cd55c59b179f9fbad5c0cc1b16a375',0,2,1,'2019-01-20 16:19:10');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -300,4 +302,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-13 21:51:04
+-- Dump completed on 2019-01-24  2:40:48

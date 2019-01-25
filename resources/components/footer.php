@@ -86,7 +86,7 @@
 
       case 'add-recipe':
       echo "<script src='https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js'></script>";
-      echo "<script async src='js/add-recipe.js'></script>";
+      echo "<script src='js/add-recipe.js'></script>";
         break;
 
       case 'recipes':
@@ -99,6 +99,11 @@
 
       case 'contact':
         echo "<script src='js/contact.js'></script>";
+        break;
+
+      case 'update-recipe':
+        echo "<script src='https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js'></script>";
+        echo "<script src='js/update-recipe.js'></script>";
         break;
 
       case 'profile':

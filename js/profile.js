@@ -31,7 +31,7 @@ const init = () => {
     })
     .then(res => {
       const data = res.data
-      const recipesList = data.map(recipe => Recipe(recipe)).join('')
+      const recipesList = data.map(recipe => RecipeProfile(recipe)).join('')
       recipes.innerHTML = recipesList
     })
     .catch(err => {

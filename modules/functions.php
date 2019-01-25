@@ -23,7 +23,7 @@
  */
 
 function getDomain() {
-  return 'http://localhost/FoodBook';
+  return 'foodbook.local';
 }
 
 
@@ -137,6 +137,10 @@ function routerView($page) {
     case 'profile':
       view('profile');
       break;  
+
+    case 'update-recipe':
+      view('update-recipe');
+      break; 
 
     case 'logout':
       view('logout');

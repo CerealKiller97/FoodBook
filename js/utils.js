@@ -60,6 +60,19 @@ const clearInputs = arr => {
   }
 }
 
+const fillData = ({
+  id,
+  title,
+  description,
+  image,
+  ingridients
+}) => {
+  document.querySelector('#recipeID').value = id
+  document.querySelector('#title').value = title
+  editor.setData(description)
+
+}
+
 // Minutes must be passed
 String.prototype.toHHMMSS = function () {
   var sec_num = parseInt(this, 10) * 60 // don't forget the second param
@@ -81,7 +94,7 @@ String.prototype.toHHMMSS = function () {
 
 const token = () => document.querySelector('#csrf_token').value
 const notification = document.querySelector('#notification')
-axios.defaults.baseURL = 'http://localhost/FoodBook/api'
+axios.defaults.baseURL = '/api'
 
 const queryString = window.location.href
 const usp = new URL(queryString)

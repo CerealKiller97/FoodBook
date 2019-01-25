@@ -72,7 +72,7 @@ class User extends Model {
   // CREATE USER
   public static function create() {
     $sql = "INSERT INTO " . self::tableName() . "(id, firstname, lastname, username, email, password, token, roleID) 
-            VALUES('', :firstName, :lastName, :username, :email, :password, :token, :role);";
+            VALUES(null, :firstName, :lastName, :username, :email, :password, :token, :role);";
     $password = password_hash(self::$password , PASSWORD_DEFAULT);
     
     $role = 2;
@@ -89,6 +89,7 @@ class User extends Model {
       $stmt->execute();
       return ($stmt->rowCount() === 1);
     } catch (PDOException $e) {
+      //echo $e->getMessage();
       return false; // email unavailable
     }
   }

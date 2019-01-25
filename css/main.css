@@ -908,3 +908,55 @@ https://images.unsplash.com/photo-1509210459313-17feefdff5cd?ixlib=rb-1.2.1&ixid
 .recipe-img {
 	height: 200px !important;
 }
+
+.spinner {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 20px auto;
+  border: 5px solid #f5f5f5;
+  border-right: 5px solid #17c671;
+  border-left: 5px solid #17c671;
+  -webkit-transition: .2s;
+  -moz-transition: .2s;
+  transition: .2s;
+  -webkit-animation: loading 1s linear infinite;
+  -moz-animation: loading 1s linear infinite;
+  animation: loading 1s linear infinite;
+}
+@-webkit-keyframes loading {
+  from {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes loading {
+  from {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes loading {
+  from {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

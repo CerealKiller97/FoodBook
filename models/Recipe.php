@@ -48,7 +48,23 @@ class Recipe extends Model {
   } 
 
   public static  function create() {
-
+    $sql = "INSERT INTO " . self::tableName() . "(id, title, description, ingridients, slug, approximatedTime, image, userID) 
+            VALUES(null, :title, :description, :ingridients, :slug, :approximatedTime, :image, :userID);";
+    //Binding
+    $stmt = DB::getInstance()->getConnection()->prepare($sql);
+    $stmt->bindParam(':title', self::$title, PDO::PARAM_STR);
+    $stmt->bindParam(':description', self::$description, PDO::PARAM_STR);
+    $stmt->bindParam(':ingridients', self::$ingridients, PDO::PARAM_STR);
+    $stmt->bindParam(':slug', self::$slug, PDO::PARAM_STR);
+    $stmt->bindParam(':approximatedTime', self::$aproximatedTime ,PDO::PARAM_INT);
+    $stmt->bindParam(':image', self::$image, PDO::PARAM_STR);
+    $stmt->bindParam(':userID', self::$userID, PDO::PARAM_INT);
+    try {
+      $stmt->execute();
+      return ($stmt->rowCount() === 1);
+    } catch (PDOException $e) {
+      echo $e->getMessage(); 
+    }
   } 
 
   public static  function delete($id) {
@@ -110,7 +126,8 @@ class Recipe extends Model {
 
   public static function paginate($perPage) {
     if (is_int($perPage)) {
-      $to = $perPage + 3;
+      $from = $perPage * 3;
+      $to = 3;
       $sql = "SELECT r.id as recipeID,r.title,r.ingridients,r.slug,r.approximatedTime,r.image,r.created,
       u.id,u.username 
               FROM " . self::tableName() . " r
@@ -119,7 +136,7 @@ class Recipe extends Model {
               WHERE r.deleted = 0
               LIMIT :perPage , :to;";
     $stmt = DB::getInstance()->getConnection()->prepare($sql);
-    $stmt->bindParam(':perPage', $perPage, PDO::PARAM_INT);
+    $stmt->bindParam(':perPage', $from, PDO::PARAM_INT);
     $stmt->bindParam(':to', $to, PDO::PARAM_INT);
     try {
       $stmt->execute();

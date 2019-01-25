@@ -1,31 +1,25 @@
 <div class="container my-5">
-  <h1 class="text-center my-2">Recipes</h1>
-  <?php component('searchRecipe'); ?>
+  <h1 class="text-center my-5">Recipes</h1>
+  <?php //component('searchRecipe'); ?>
   <?= Token::generate() ?>
-
-
   <div>
+
+  <div class="spinner"></div>
+
+  <!-- <div id="progress-indicator" class="progress progress-sm my-5">
+  <div id="progress" class="progress-bar" role="progressbar" data-percentage="60" style="width: 60%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+</div> -->
+
+
     <div id="recipe-list" class="d-flex justify-content-around">
     
     </div>
     <div id="pagination">
       <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center my-5">
-        <li class="page-item">
-          <a class="page-link" href="#" tabindex="-1">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link paginate active" href="#" data-page="1">1</a></li>
-        <li class="page-item"><a class="page-link paginate" href="#" data-page="2">2</a></li>
-        <li class="page-item"><a class="page-link paginate" href="#" data-page="3">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#">Next</a>
-        </li>
+      <ul id="pagination-links" class="pagination justify-content-center my-5">
       </ul>
     </nav>
     </div>
   </div>
-
   <div id="notification"></div>
-
-
 </div>

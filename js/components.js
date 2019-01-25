@@ -37,8 +37,36 @@ const Recipe = ({
   <div class="card-body">
     <h6 class="card-title">${title}</h6>
     <p class="card-text">${ingridientsList}</p>
-    <h6 class="card-title">Preparation: ${approximatedTime.toHHMMSS()} min</h6>
+    <h6 class="card-title">Preparation: ${approximatedTime.toHHMMSS()}</h6>
     <a href="?page=recipe&id=${recipeID}" class="btn btn-success">Read more &rarr;</a>
+  </div>
+</div>`
+}
+
+const RecipeProfile = ({
+  recipeID,
+  title,
+  ingridients,
+  approximatedTime,
+  image
+}) => {
+  ingridients = ingridients.split(',')
+  const ingridientsList = ingridients
+    .map(
+      ingridient => `<span class="badge badge-light mr-3">${ingridient}</span>`
+    )
+    .join('')
+
+  return `
+<div class="card mx-2" style="width: 25rem;">
+  <img class="card-img-top recipe-img" src="${image}" alt="${title} image" />
+  <div class="card-body">
+    <h6 class="card-title">${title}</h6>
+    <p class="card-text">${ingridientsList}</p>
+    <h6 class="card-title">Preparation: ${approximatedTime.toHHMMSS()}</h6>
+    <a href="?page=update-recipe&id=${recipeID}" class="btn btn-success">Update</a>
+    <a href="?page=recipe&id=${recipeID}" class="btn btn-danger">Delete</a>
+
   </div>
 </div>`
 }

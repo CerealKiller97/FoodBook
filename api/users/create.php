@@ -63,6 +63,7 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST')) {
         User::setEmail($email);
         User::setPassword($password);
         User::setToken($token);
+        
         if (User::create()) {
             //if (User::mail($email)) {
               $data = 'Successfully registered! Verify your identity';
