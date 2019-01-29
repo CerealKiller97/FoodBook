@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://foodbook-recipe.000webhostapp.com/</loc>
+    <lastmod>2019-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1</priority>
+  </url>
+
+  <url>
+    <loc>https://foodbook-recipe.000webhostapp.com/?page=recipes</loc>
+    <lastmod>2019-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://foodbook-recipe.000webhostapp.com/?page=contact</loc>
+    <lastmod>2019-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://foodbook-recipe.000webhostapp.com/?page=recipe&id=1</loc>
+    <lastmod>2019-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>

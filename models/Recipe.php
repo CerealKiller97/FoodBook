@@ -81,8 +81,10 @@ class Recipe extends Model {
   } 
 
   public static  function update() {
-
-  } // UPDATE
+    $sql = "UPDATE " . self::tableName() . 
+           "SET 
+            WHERE id = :id"; 
+  } 
 
 
   public static function user($id) {

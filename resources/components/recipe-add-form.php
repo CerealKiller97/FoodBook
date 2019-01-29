@@ -2,7 +2,7 @@
   <h6 class="text-center">Recipe Form</h6> 
 
   <input type="hidden" id="_userID" value="<?= auth()->id ?>" />
-
+  
   <div class="form-group row">
     <label for="title" class="col-4 col-form-label">Title</label> 
     <div class="col-8">
@@ -13,9 +13,11 @@
   <div class="form-group row">
     <label for="ingridents" class="col-4 col-form-label">Ingridients</label>
     <div class="col-8">
-      <input id="ingridients" type="text" placeholder="Ingridients" class="form-control" />
+      <input id="ingridients" type="text" placeholder="Press enter to add ingridient" class="form-control" />
     </div>
   </div>
+
+    <div id="ingridientsList"></div>
 
   <div class="form-group row"> 
     <label for="description" class="col-4 col-form-label">Description</label> 

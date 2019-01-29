@@ -19,13 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   if (Token::check($token)) {  
     if (Token::validate($token)) {      
-      ['title' => $title, 'description' => $description, 'approximatedTime' => $approximatedTime, 'ingridients' => $ingridients, 'userID' => $userID] = $_POST;
+      ['title' => $title, 'description' => $description, 'approximatedTime' => $approximatedTime, 'ingridients' => $ingridients, 'userID' => $userID, 'recipeImage' => $recipeImage] = $_POST;
 
      $ingridientsArr =  explode(',',$ingridients);
-      ['name' => $name, 'tmp_name' => $tmp_name ] = $_FILES['recipeImage'];
       // Validation
       $errors = [];
-    
+      
       if (!$title) {
         $errors[] = 'Title  must not be empty';
       } 
@@ -43,17 +42,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       }
     
       if (count($errors) === 0) {
-        $newFile = time() . $name;
-        $filePATH = '../../images/' . $newFile;
-
-        if (move_uploaded_file($tmp_name, $filePATH)) {
-          $filePATHDB = 'images/' . $newFile;
           Recipe::setTitle($title);
           Recipe::setDescription($description);
           Recipe::setIngridients($ingridients);
           Recipe::setSlug('recipe-slug');
           Recipe::setAproximatedTime($approximatedTime);
-          Recipe::setImage($filePATHDB);
+          Recipe::setImage($recipeImage);
           Recipe::setUserID($userID);
 
           if (Recipe::create()) {
@@ -62,8 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           } else {
               $data = 'Err';
               $code = 500;
-            } 
-          }
+            }    
       } else {
         $data = $errors;
         $code = 422;
@@ -73,8 +66,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = 'Autorization failed!';
   }
 }
-echo json_encode([
-  'data'  => $data, 
-  'image' => $filePATHDB
-]);
+echo json_encode($data);
 http_response_code($code);

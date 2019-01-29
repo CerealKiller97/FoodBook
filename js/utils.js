@@ -60,17 +60,26 @@ const clearInputs = arr => {
   }
 }
 
+
+
 const fillData = ({
   id,
   title,
   description,
   image,
-  ingridients
+  ingridients,
+  approximatedTime,
+  userID
 }) => {
   document.querySelector('#recipeID').value = id
-  document.querySelector('#title').value = title
-  editor.setData(description)
+  document.querySelector('#_userID').value = userID
 
+  document.querySelector('#title').value = title
+  document.querySelector('#time').value = approximatedTime
+  document.querySelector('#preview-image').src = image
+
+
+  editor.setData(description)
 }
 
 // Minutes must be passed
@@ -100,3 +109,21 @@ const queryString = window.location.href
 const usp = new URL(queryString)
 const page = usp.searchParams.get('page')
 const id = usp.searchParams.get('id')
+
+const upload = formData => {
+  axios({
+      method: 'POST',
+      url: `/recipes/upload.php?apiKey=${token()}`,
+      data: formData,
+      config: {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+    })
+    .then(res => {
+      document.querySelector('#preview-image').src = res.data
+      document.querySelector('#pictureSrc').value = res.data
+    })
+    .catch(err => notification.innerHTML = ErrorNotification(err.response.data))
+}

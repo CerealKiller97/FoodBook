@@ -109,11 +109,11 @@ function dd($var) {
 }
 
 function component($component) {
-  require_once "resources/components/$component.php";
+  require_once "resources/components/{$component}.php";
 }
 
 function view($view) {
-  require_once "resources/views/$view.php";
+  require_once "resources/views/{$view}.php";
 }
 
 function routerView($page) {

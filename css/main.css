@@ -960,3 +960,7 @@ https://images.unsplash.com/photo-1509210459313-17feefdff5cd?ixlib=rb-1.2.1&ixid
     transform: rotate(360deg);
   }
 }
+
+.delete {
+	cursor: pointer;
+}
